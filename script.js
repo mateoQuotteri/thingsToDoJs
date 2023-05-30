@@ -27,6 +27,10 @@ const deleteButton = document.createElement("button");
 deleteButton.classList.add("delete-button");
 deleteButton.textContent = "X";
 
+newLiElement.appendChild(checkboxElement)
+newLiElement.appendChild(spanElement)
+newLiElement.appendChild(deleteButton)
+
 
 ul.appendChild(newLiElement);
 }
