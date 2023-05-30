@@ -2,9 +2,14 @@ const form = document.getElementById("taskForm");
 const input = document.getElementById("newTaskInput")
 const ul = document.getElementById("taskList")
 
+window.onload = function(){
+    console.log(form);
+}
+form.onsubmit = function (event) {
+    event.preventDefault();
 
-form.addEventListener("submit", function () {
     let tareaAAgregar = input.value;
+    
     console.log(tareaAAgregar);
     // Crea un nuevo elemento <li>
 const newLiElement = document.createElement("li");
@@ -24,4 +29,4 @@ deleteButton.textContent = "X";
 
 
 ul.appendChild(newLiElement);
-})
+}
