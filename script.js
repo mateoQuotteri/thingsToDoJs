@@ -1,7 +1,7 @@
 const form = document.getElementById("taskForm");
 const input = document.getElementById("newTaskInput")
 const ul = document.getElementById("taskList")
-
+const  error = document.getElementById("task-error")
 window.onload = function(){
     console.log(form);
 }
@@ -11,6 +11,11 @@ form.onsubmit = function (event) {
     let tareaAAgregar = input.value;
     
     console.log(tareaAAgregar);
+    if (tareaAAgregar.length === 0) {
+        error.classList.remove("error-message")
+        error.classList.add("error-message-show")
+return
+    }
     // Crea un nuevo elemento <li>
 const newLiElement = document.createElement("li");
 

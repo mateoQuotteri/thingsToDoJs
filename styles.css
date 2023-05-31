@@ -12,6 +12,7 @@ body {
   form {
     display: flex;
     margin-bottom: 10px;
+    flex-wrap: wrap;
   }
   
   input[type="text"] {
@@ -29,6 +30,24 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+  }
+  
+  .error-message {
+    display: none;
+    color: red;
+    margin-top: 5px;
+  }
+  .error-message-show{
+    display: block;
+    color: red;
+    margin-top: 5px;
+    width: 100%;
+    padding: 10px;
+
+  }
+  
+  input:invalid ~ .error-message {
+    display: block;
   }
   
   ul {
