@@ -2,6 +2,11 @@ const form = document.getElementById("taskForm");
 const input = document.getElementById("newTaskInput")
 const ul = document.getElementById("taskList")
 const  error = document.getElementById("task-error")
+const deleteButtons = document.querySelectorAll(".delete-button")
+const checkedButtons = document.querySelectorAll(".checkbox")
+
+
+
 
 function estaVacio(input) {
     if (input.length === 0) {
@@ -10,6 +15,16 @@ function estaVacio(input) {
         return
     }
 }
+checkedButtons.onclick = function (params) {
+    console.log(checkedButtons);
+}
+
+deleteButtons.forEach(function (button) {
+    button.addEventListener("click" , function (event) {
+        let parentElement = button.parentElement;
+        parentElement.classList.add("none")
+    })
+})
 
 form.onsubmit = function (event) {
     event.preventDefault();
@@ -38,3 +53,5 @@ form.onsubmit = function (event) {
 
     ul.appendChild(newLiElement);
 }
+
+

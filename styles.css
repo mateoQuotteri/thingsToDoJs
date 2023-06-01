@@ -45,7 +45,9 @@ body {
     padding: 10px;
 
   }
-  
+  .none{
+    display: none;
+  }
   input:invalid ~ .error-message {
     display: block;
   }
