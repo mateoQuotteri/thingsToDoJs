@@ -2,40 +2,39 @@ const form = document.getElementById("taskForm");
 const input = document.getElementById("newTaskInput")
 const ul = document.getElementById("taskList")
 const  error = document.getElementById("task-error")
-window.onload = function(){
-    console.log(form);
+
+function estaVacio(input) {
+    if (input.length === 0) {
+        error.classList.remove("error-message")
+        error.classList.add("error-message-show")
+        return
+    }
 }
+
 form.onsubmit = function (event) {
     event.preventDefault();
 
     let tareaAAgregar = input.value;
     
     console.log(tareaAAgregar);
-    if (tareaAAgregar.length === 0) {
-        error.classList.remove("error-message")
-        error.classList.add("error-message-show")
-return
-    }
-    // Crea un nuevo elemento <li>
-const newLiElement = document.createElement("li");
+    estaVacio(tareaAAgregar)
 
-// Crea un elemento <input> para la casilla de verificación
-const checkboxElement = document.createElement("input");
-checkboxElement.type = "checkbox";
+    const newLiElement = document.createElement("li");
 
-// Crea un elemento <span> para el texto de la tarea
-const spanElement = document.createElement("span");
-spanElement.textContent = tareaAAgregar;
+    const checkboxElement = document.createElement("input");
+    checkboxElement.type = "checkbox";
 
-// Crea un botón de eliminación
-const deleteButton = document.createElement("button");
-deleteButton.classList.add("delete-button");
-deleteButton.textContent = "X";
-
-newLiElement.appendChild(checkboxElement)
-newLiElement.appendChild(spanElement)
-newLiElement.appendChild(deleteButton)
+    const spanElement = document.createElement("span");
+    spanElement.textContent = tareaAAgregar;
 
 
-ul.appendChild(newLiElement);
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-button");
+    deleteButton.textContent = "X";
+
+    newLiElement.appendChild(checkboxElement)
+    newLiElement.appendChild(spanElement)
+    newLiElement.appendChild(deleteButton)
+
+    ul.appendChild(newLiElement);
 }
