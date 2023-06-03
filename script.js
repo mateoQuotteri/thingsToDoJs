@@ -4,20 +4,20 @@ const ul = document.getElementById("taskList")
 const  error = document.getElementById("task-error")
 const deleteButtons = document.querySelectorAll(".delete-button")
 const checkedButtons = document.querySelectorAll(".checkbox")
+const allP = document.querySelectorAll("p")
+
+
 
 window.addEventListener("load", function (params) {
     checkedButtons.forEach(function (button) {
        button.checked === false
     })
+    /*
+    allP.forEach(function (p) {
+        console.log(p.textContent);
+     })*/
 })
 
-function estaVacio(input) {
-    if (input.length === 0) {
-        error.classList.remove("error-message")
-        error.classList.add("error-message-show")
-        return
-    }
-}
 
 deleteButtons.forEach(function (button) {
     button.addEventListener("click" , function (event) {
@@ -27,13 +27,20 @@ deleteButtons.forEach(function (button) {
     })
 })
 
+
+
 checkedButtons.forEach(function (button) {
     button.addEventListener("click" , function (event) {
         let broElement = button.nextElementSibling;
-        console.log(broElement);
+        console.log(checkedButtons);
         broElement.classList.toggle("completed")
     })
 })
+function estaVacio(input) {
+    if (input.length === 0) {
+        return true
+    }
+}
 
 
 form.onsubmit = function (event) {
@@ -41,27 +48,44 @@ form.onsubmit = function (event) {
 
     let tareaAAgregar = input.value;
     
-    console.log(tareaAAgregar);
-    estaVacio(tareaAAgregar)
+    if (estaVacio(tareaAAgregar)) {
+        error.classList.remove("error-message")
+            error.classList.add("error-message-show")
+            return
+    }
+    
 
     const newLiElement = document.createElement("li");
 
     const checkboxElement = document.createElement("input");
     checkboxElement.type = "checkbox";
+    checkboxElement.classList.add("checkbox")
 
-    const spanElement = document.createElement("span");
-    spanElement.textContent = tareaAAgregar;
+    const p = document.createElement("p");
+    p.textContent = tareaAAgregar;
 
 
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-button");
-    deleteButton.textContent = "X";
+    deleteButton.textContent = "Eliminar";
 
     newLiElement.appendChild(checkboxElement)
-    newLiElement.appendChild(spanElement)
+    newLiElement.appendChild(p)
     newLiElement.appendChild(deleteButton)
 
     ul.appendChild(newLiElement);
+
+    deleteButton.addEventListener("click", function () {
+        let parentElement = deleteButton.parentElement;
+        parentElement.remove();
+    });
+    checkboxElement.addEventListener("click" , function (event) {
+        let broElement = checkboxElement.nextElementSibling;
+        broElement.classList.toggle("completed")
+    })
+
+    input.value = ""
+    localStorage.setItem("tareas" , tareaAAgregar)
 }
 
 
