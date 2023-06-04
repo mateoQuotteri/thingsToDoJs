@@ -84,8 +84,22 @@ form.onsubmit = function (event) {
         broElement.classList.toggle("completed")
     })
 
-    input.value = ""
-    localStorage.setItem("tareas" , tareaAAgregar)
+    input.value = "";
+
+    let tareasYaAlmacenadas = localStorage.getItem("tareas");
+    if (tareasYaAlmacenadas === null) {
+        let tareasPorRealizar = [tareaAAgregar]
+        let tareasPorRealizarAJSON = JSON.stringify(tareasPorRealizar)
+        localStorage.setItem("tareas" , tareasPorRealizarAJSON)
+    }else{
+        var tareasPrevias = localStorage.getItem("tareas");
+        // Convierte el valor en un array
+      var tareasPreviasJSON = JSON.parse(tareasPrevias);
+        // Agrega un nuevo dato al array
+       tareasPreviasJSON.push(tareaAAgregar);
+        // Vuelve a guardar el array actualizado en localStorage
+       localStorage.setItem("tareas", JSON.stringify(tareasPreviasJSON));
+    }
 }
 
 
