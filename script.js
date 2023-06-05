@@ -21,10 +21,33 @@ window.addEventListener("load", function (params) {
 
 deleteButtons.forEach(function (button) {
     button.addEventListener("click" , function (event) {
-        console.log(event);
+
+
+        //eliminando elemento de las vistas
+
         let parentElement = button.parentElement;
         parentElement.classList.add("none")
+    
+
+
+        //eliminando elemento del local storage
+        let brotherElement = button.previousElementSibling;
+        let thingToDelete = brotherElement.textContent;
+
+        let tareasPrevias = localStorage.getItem("tareas");
+        // Convierte el valor en un array
+      let tareasPreviasJSON = JSON.parse(tareasPrevias);
+     
+        // Elimina esa tarea del array 
+         tareasActualizadas = tareasPreviasJSON.filter(tarea => tarea != thingToDelete )
+         console.log(tareasActualizadas);
+        // Vuelve a guardar el array actualizado en localStorage
+       localStorage.setItem("tareas", JSON.stringify(tareasActualizadas));
+       console.log("LOL");
+
+
     })
+    
 })
 
 
@@ -78,6 +101,27 @@ form.onsubmit = function (event) {
     deleteButton.addEventListener("click", function () {
         let parentElement = deleteButton.parentElement;
         parentElement.remove();
+
+
+            //eliminando elemento del local storage
+            let brotherElement = deleteButton.previousElementSibling;
+            let thingToDelete = brotherElement.textContent;
+    
+            let tareasPrevias = localStorage.getItem("tareas");
+            // Convierte el valor en un array
+          let tareasPreviasJSON = JSON.parse(tareasPrevias);
+         
+            // Elimina esa tarea del array 
+             tareasActualizadas = tareasPreviasJSON.filter(tarea => tarea != thingToDelete )
+             console.log(tareasActualizadas);
+            // Vuelve a guardar el array actualizado en localStorage
+           localStorage.setItem("tareas", JSON.stringify(tareasActualizadas));
+           console.log("LOL");
+
+
+
+
+
     });
     checkboxElement.addEventListener("click" , function (event) {
         let broElement = checkboxElement.nextElementSibling;
@@ -107,5 +151,8 @@ form.onsubmit = function (event) {
 
 
 
-const array = ["hola","chau", "jaja"]
-console.log(array.indexOf("jaja"));
+
+/*
+const resultado = animales.filter(animal => animal != 'oso');
+console.log(resultado);
+*/
