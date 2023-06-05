@@ -100,6 +100,12 @@ form.onsubmit = function (event) {
         // Vuelve a guardar el array actualizado en localStorage
        localStorage.setItem("tareas", JSON.stringify(tareasPreviasJSON));
     }
+
+
 }
 
 
+
+
+const array = ["hola","chau", "jaja"]
+console.log(array.indexOf("jaja"));
