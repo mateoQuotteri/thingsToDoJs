@@ -34,6 +34,36 @@ function generarTareas(array) {
     newLiElement.appendChild(deleteButton)
 
     ul.appendChild(newLiElement);
+
+    deleteButton.addEventListener("click", function () {
+        let parentElement = deleteButton.parentElement;
+        parentElement.remove();
+
+
+            //eliminando elemento del local storage
+            let brotherElement = deleteButton.previousElementSibling;
+            let thingToDelete = brotherElement.textContent;
+    
+            let tareasPrevias = localStorage.getItem("tareas");
+            // Convierte el valor en un array
+          let tareasPreviasJSON = JSON.parse(tareasPrevias);
+         
+            // Elimina esa tarea del array 
+             tareasActualizadas = tareasPreviasJSON.filter(tarea => tarea != thingToDelete )
+             console.log(tareasActualizadas);
+            // Vuelve a guardar el array actualizado en localStorage
+           localStorage.setItem("tareas", JSON.stringify(tareasActualizadas));
+           console.log("LOL");
+
+
+
+
+
+    });
+    checkboxElement.addEventListener("click" , function (event) {
+        let broElement = checkboxElement.nextElementSibling;
+        broElement.classList.toggle("completed")
+    })
         
       });
 }
