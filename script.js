@@ -74,9 +74,10 @@ window.addEventListener("load", function (params) {
         if (tareasPreviasJSON === null) {
             notThingsToDo.classList.remove("none")
             return
-        }
+        }else  notThingsToDo.classList.toggle("none")
 
     generarTareas(tareasPreviasJSON)
+    notThingsToDo.classList.toggle("none")
 })
 
 
