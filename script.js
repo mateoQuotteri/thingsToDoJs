@@ -8,10 +8,48 @@ const allP = document.querySelectorAll("p")
 
 
 
+function generarTareas(array) {
+    array.forEach(function(elemento) {
+        // Crea un elemento <li> para cada elemento del array
+        const newLiElement = document.createElement("li");
+      
+        // Agrega el contenido del elemento al texto del <li>
+        
+      
+        // Agrega el <li> al <ul> en tu página HTML
+        const checkboxElement = document.createElement("input");
+    checkboxElement.type = "checkbox";
+    checkboxElement.classList.add("checkbox")
+
+    const p = document.createElement("p");
+    p.textContent = elemento;
+
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-button");
+    deleteButton.textContent = "Eliminar";
+
+    newLiElement.appendChild(checkboxElement)
+    newLiElement.appendChild(p)
+    newLiElement.appendChild(deleteButton)
+
+    ul.appendChild(newLiElement);
+        
+      });
+}
+
 window.addEventListener("load", function (params) {
     checkedButtons.forEach(function (button) {
        button.checked === false
     })
+
+    //creo lis por cada tarea almacenada en el local sotrage
+    let tareasPrevias = localStorage.getItem("tareas");
+    // Convierte el valor en un array
+  let tareasPreviasJSON = JSON.parse(tareasPrevias);
+  generarTareas(tareasPreviasJSON)
+    
+    
     /*
     allP.forEach(function (p) {
         console.log(p.textContent);
