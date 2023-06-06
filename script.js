@@ -1,23 +1,20 @@
 const form = document.getElementById("taskForm");
 const input = document.getElementById("newTaskInput")
 const ul = document.getElementById("taskList")
-const  error = document.getElementById("task-error")
+const error = document.getElementById("task-error")
 const deleteButtons = document.querySelectorAll(".delete-button")
 const checkedButtons = document.querySelectorAll(".checkbox")
 const allP = document.querySelectorAll("p")
-
+const notThingsToDo = document.getElementById("not-things-todo")
 
 
 function generarTareas(array) {
     array.forEach(function(elemento) {
-        // Crea un elemento <li> para cada elemento del array
-        const newLiElement = document.createElement("li");
+    // Crea un elemento <li> para cada elemento del array
+    const newLiElement = document.createElement("li");   
       
-        // Agrega el contenido del elemento al texto del <li>
-        
-      
-        // Agrega el <li> al <ul> en tu página HTML
-        const checkboxElement = document.createElement("input");
+    // Agrega el <li> al <ul> en tu página HTML
+    const checkboxElement = document.createElement("input");
     checkboxElement.type = "checkbox";
     checkboxElement.classList.add("checkbox")
 
@@ -41,25 +38,21 @@ function generarTareas(array) {
 
 
             //eliminando elemento del local storage
-            let brotherElement = deleteButton.previousElementSibling;
-            let thingToDelete = brotherElement.textContent;
+        let brotherElement = deleteButton.previousElementSibling;
+        let thingToDelete = brotherElement.textContent;
     
-            let tareasPrevias = localStorage.getItem("tareas");
+        let tareasPrevias = localStorage.getItem("tareas");
             // Convierte el valor en un array
-          let tareasPreviasJSON = JSON.parse(tareasPrevias);
+        let tareasPreviasJSON = JSON.parse(tareasPrevias);
          
-            // Elimina esa tarea del array 
-             tareasActualizadas = tareasPreviasJSON.filter(tarea => tarea != thingToDelete )
-             console.log(tareasActualizadas);
-            // Vuelve a guardar el array actualizado en localStorage
-           localStorage.setItem("tareas", JSON.stringify(tareasActualizadas));
-           console.log("LOL");
-
-
-
-
-
+        // Elimina esa tarea del array 
+        tareasActualizadas = tareasPreviasJSON.filter(tarea => tarea != thingToDelete )
+        console.log(tareasActualizadas);
+        // Vuelve a guardar el array actualizado en localStorage
+        localStorage.setItem("tareas", JSON.stringify(tareasActualizadas));
+    
     });
+
     checkboxElement.addEventListener("click" , function (event) {
         let broElement = checkboxElement.nextElementSibling;
         broElement.classList.toggle("completed")
@@ -76,14 +69,14 @@ window.addEventListener("load", function (params) {
     //creo lis por cada tarea almacenada en el local sotrage
     let tareasPrevias = localStorage.getItem("tareas");
     // Convierte el valor en un array
-  let tareasPreviasJSON = JSON.parse(tareasPrevias);
-  generarTareas(tareasPreviasJSON)
+    let tareasPreviasJSON = JSON.parse(tareasPrevias);
     
-    
-    /*
-    allP.forEach(function (p) {
-        console.log(p.textContent);
-     })*/
+        if (tareasPreviasJSON === null) {
+            notThingsToDo.classList.remove("none")
+            return
+        }
+
+    generarTareas(tareasPreviasJSON)
 })
 
 
@@ -104,14 +97,14 @@ deleteButtons.forEach(function (button) {
 
         let tareasPrevias = localStorage.getItem("tareas");
         // Convierte el valor en un array
-      let tareasPreviasJSON = JSON.parse(tareasPrevias);
+        let tareasPreviasJSON = JSON.parse(tareasPrevias);
      
         // Elimina esa tarea del array 
-         tareasActualizadas = tareasPreviasJSON.filter(tarea => tarea != thingToDelete )
-         console.log(tareasActualizadas);
+        tareasActualizadas = tareasPreviasJSON.filter(tarea => tarea != thingToDelete )
+        console.log(tareasActualizadas);
         // Vuelve a guardar el array actualizado en localStorage
-       localStorage.setItem("tareas", JSON.stringify(tareasActualizadas));
-       console.log("LOL");
+        localStorage.setItem("tareas", JSON.stringify(tareasActualizadas));
+        console.log("LOL");
 
 
     })
@@ -171,25 +164,20 @@ form.onsubmit = function (event) {
         parentElement.remove();
 
 
-            //eliminando elemento del local storage
-            let brotherElement = deleteButton.previousElementSibling;
-            let thingToDelete = brotherElement.textContent;
+        //eliminando elemento del local storage
+        let brotherElement = deleteButton.previousElementSibling;
+        let thingToDelete = brotherElement.textContent;
     
-            let tareasPrevias = localStorage.getItem("tareas");
-            // Convierte el valor en un array
-          let tareasPreviasJSON = JSON.parse(tareasPrevias);
+        let tareasPrevias = localStorage.getItem("tareas");
+        // Convierte el valor en un array
+        let tareasPreviasJSON = JSON.parse(tareasPrevias);
          
-            // Elimina esa tarea del array 
-             tareasActualizadas = tareasPreviasJSON.filter(tarea => tarea != thingToDelete )
-             console.log(tareasActualizadas);
-            // Vuelve a guardar el array actualizado en localStorage
-           localStorage.setItem("tareas", JSON.stringify(tareasActualizadas));
-           console.log("LOL");
-
-
-
-
-
+        // Elimina esa tarea del array 
+        tareasActualizadas = tareasPreviasJSON.filter(tarea => tarea != thingToDelete )
+        console.log(tareasActualizadas);
+        // Vuelve a guardar el array actualizado en localStorage
+        localStorage.setItem("tareas", JSON.stringify(tareasActualizadas));
+    
     });
     checkboxElement.addEventListener("click" , function (event) {
         let broElement = checkboxElement.nextElementSibling;
@@ -206,11 +194,11 @@ form.onsubmit = function (event) {
     }else{
         var tareasPrevias = localStorage.getItem("tareas");
         // Convierte el valor en un array
-      var tareasPreviasJSON = JSON.parse(tareasPrevias);
+        var tareasPreviasJSON = JSON.parse(tareasPrevias);
         // Agrega un nuevo dato al array
-       tareasPreviasJSON.push(tareaAAgregar);
+        tareasPreviasJSON.push(tareaAAgregar);
         // Vuelve a guardar el array actualizado en localStorage
-       localStorage.setItem("tareas", JSON.stringify(tareasPreviasJSON));
+        localStorage.setItem("tareas", JSON.stringify(tareasPreviasJSON));
     }
 
 
